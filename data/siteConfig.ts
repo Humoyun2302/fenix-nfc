@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "FENIX NFC",
-  url: "https://fenixnfc.uz",
+  url: "https://fenix-nfc-813.netlify.app",
   email: "hello@fenixnfc.uz",
   phone: "+998 XX XXX XX XX",
   phoneHref: "tel:+998000000000",
