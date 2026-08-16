@@ -9,6 +9,9 @@
 [functions]
   directory = "netlify/fenix-functions"
 
+[functions."supabase-keep-alive"]
+  schedule = "@daily"
+
 [[headers]]
   for = "/*"
   [headers.values]
