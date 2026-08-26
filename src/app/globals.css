@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/*
+ * Fenix.nfc design system.
+ * Light-first, gold used strictly as an accent.
+ */
+:root {
+  --fx-accent: #d6a84b;
+  --fx-accent-hover: #c3953b;
+  --fx-accent-foreground: #171717;
+  --fx-dark-surface: #2d3034;
+  --fx-workspace: #f4f5f6;
+  --fx-surface: #ffffff;
+  --fx-ink: #30343a;
+  --fx-ink-secondary: #858b92;
+  --fx-line: #e1e4e7;
+  --fx-error: #d9534f;
+  --fx-success: #3d9b68;
+  --fx-warning: #d99a2b;
+  --fx-info: #4677c8;
+
+  --radius-control: 10px;
+}
+
+@theme inline {
+  --color-accent: var(--fx-accent);
+  --color-accent-hover: var(--fx-accent-hover);
+  --color-accent-foreground: var(--fx-accent-foreground);
+  --color-dark-surface: var(--fx-dark-surface);
+  --color-workspace: var(--fx-workspace);
+  --color-surface: var(--fx-surface);
+  --color-ink: var(--fx-ink);
+  --color-ink-secondary: var(--fx-ink-secondary);
+  --color-line: var(--fx-line);
+  --color-danger: var(--fx-error);
+  --color-success: var(--fx-success);
+  --color-warning: var(--fx-warning);
+  --color-info: var(--fx-info);
+
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  border-color: var(--fx-line);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--fx-surface);
+  color: var(--fx-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect reduced-motion preferences globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessible, visible focus ring for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--fx-accent);
+  outline-offset: 2px;
+}
+
+/* Thin, neutral scrollbars inside the editor preview. */
+.fx-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.fx-scroll::-webkit-scrollbar-thumb {
+  background: var(--fx-line);
+  border-radius: 999px;
+}
