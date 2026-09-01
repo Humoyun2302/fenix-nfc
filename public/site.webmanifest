@@ -1,0 +1,22 @@
+{
+  "name": "Fenix NFC",
+  "short_name": "Fenix",
+  "description": "Restoranlar, mehmonxonalar, klinikalar, sport zallari va bizneslar uchun NFC mahsulotlari.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa",
+  "lang": "uz",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "180x180"
+    }
+  ]
+}
