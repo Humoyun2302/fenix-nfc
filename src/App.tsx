@@ -1,27 +1,41 @@
-import { Atmosphere } from '@/components/Atmosphere'
-import { Footer } from '@/components/Footer'
-import { Navbar } from '@/components/Navbar'
-import { Contact } from '@/sections/Contact'
-import { Hero } from '@/sections/Hero'
-import { Process } from '@/sections/Process'
-import { Products } from '@/sections/Products'
-import { Solutions } from '@/sections/Solutions'
-import { Work } from '@/sections/Work'
+import { LangProvider, useLang } from './locales'
+import { Nav } from './components/Nav'
+import { Footer } from './components/Footer'
+import { Hero } from './sections/Hero'
+import { Statement } from './sections/Statement'
+import { Products } from './sections/Products'
+import { UseCases } from './sections/UseCases'
+import { HowItWorks } from './sections/HowItWorks'
+import { Projects } from './sections/Projects'
+import { Cta } from './sections/Cta'
 
-export function App() {
+function Site() {
+  const { t } = useLang()
   return (
     <>
-      <Atmosphere />
-      <Navbar />
+      <a className="skip" href="#main">
+        {t.common.skip}
+      </a>
+      <Nav />
       <main id="main">
         <Hero />
+        <Statement />
         <Products />
-        <Solutions />
-        <Process />
-        <Work />
-        <Contact />
+        <UseCases />
+        <HowItWorks />
+        <Projects />
+        <Cta />
       </main>
       <Footer />
+      <div className="grain" aria-hidden="true" />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <LangProvider>
+      <Site />
+    </LangProvider>
   )
 }

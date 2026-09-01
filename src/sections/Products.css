@@ -1,0 +1,212 @@
+.products {
+  padding-block: clamp(96px, 12vw, 170px) 0;
+}
+
+.products__list {
+  margin-top: clamp(44px, 6vw, 80px);
+}
+
+.prow {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  align-items: end;
+  border-top: 1px solid var(--line);
+  padding-block: clamp(48px, 7vw, 96px);
+}
+
+/* editorial column rhythm — each product sits differently on the grid */
+.prow--a .prow__mediawrap { grid-column: 1 / span 7; }
+.prow--a .prow__body { grid-column: 9 / span 4; }
+.prow--b .prow__mediawrap { grid-column: 7 / span 6; order: 2; }
+.prow--b .prow__body { grid-column: 1 / span 5; order: 1; }
+.prow--c .prow__mediawrap { grid-column: 2 / span 5; }
+.prow--c .prow__body { grid-column: 8 / span 4; }
+.prow--d .prow__mediawrap { grid-column: 6 / span 7; order: 2; }
+.prow--d .prow__body { grid-column: 1 / span 4; order: 1; }
+
+.prow__mediawrap {
+  position: relative;
+}
+.prow__num {
+  position: absolute;
+  top: -0.52em;
+  left: -0.05em;
+  z-index: 2;
+  font-size: clamp(4.2rem, 8.5vw, 8.8rem);
+}
+.prow--flip .prow__num {
+  left: auto;
+  right: -0.05em;
+}
+
+.prow__media {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.field--white { background: var(--white); border: 1px solid var(--line-soft); }
+.field--ink { background: var(--ink); }
+.field--grey { background: var(--grey); }
+.field--paper { background: var(--paper); border: 1px solid var(--line); }
+
+.pv {
+  transition: transform 0.9s var(--ease);
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.prow__media:hover .pv {
+  transform: translate(1.1%, -1.1%);
+}
+
+/* wood */
+.pv--wood .pv__wood {
+  width: 74%;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 30px 36px rgba(10, 10, 10, 0.22));
+}
+.pv__dim {
+  position: absolute;
+  right: 7%;
+  bottom: 6%;
+  width: clamp(90px, 10vw, 140px);
+}
+
+/* acrylic */
+.pv--acrylic .pv__acr {
+  width: 72%;
+  filter: drop-shadow(0 26px 36px rgba(0, 0, 0, 0.55));
+}
+
+/* cards */
+.pv--card .pv__cardback {
+  position: absolute;
+  width: 52%;
+  transform: translate(16%, -22%) rotate(6deg);
+  filter: drop-shadow(0 18px 26px rgba(10, 10, 10, 0.18));
+}
+.pv--card .pv__cardfront {
+  position: relative;
+  width: 58%;
+  transform: translate(-8%, 10%) rotate(-4deg);
+  filter: drop-shadow(0 26px 32px rgba(10, 10, 10, 0.3));
+}
+
+/* custom trio */
+.pv--custom {
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  place-content: center;
+  gap: clamp(14px, 2.4vw, 30px);
+}
+.pv--custom .pv__tag {
+  width: clamp(90px, 11vw, 150px);
+  filter: drop-shadow(0 16px 22px rgba(10, 10, 10, 0.2));
+}
+.pv--custom .pv__dash {
+  width: clamp(84px, 10vw, 140px);
+}
+.pv--custom .pv__miniacr {
+  grid-column: 1 / -1;
+  width: clamp(180px, 22vw, 300px);
+  filter: drop-shadow(0 16px 22px rgba(10, 10, 10, 0.16));
+}
+
+/* copy column */
+.prow__body {
+  padding-bottom: 8px;
+  min-width: 0;
+}
+.prow__name {
+  margin-top: 14px;
+  font-size: clamp(1.5rem, 2.4vw, 2.35rem);
+  line-height: 1.02;
+}
+.prow__line {
+  margin-top: 14px;
+  color: var(--mute);
+  font-size: 0.98rem;
+  max-width: 36ch;
+}
+.prow__specs {
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+}
+.prow__specs > div {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.9fr) 1.4fr;
+  gap: 12px;
+  align-items: baseline;
+  padding-block: 11px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 0.92rem;
+}
+.prow__specs dd {
+  margin: 0;
+}
+.prow__uses {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.prow__usesline {
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .prow,
+  .prow--a,
+  .prow--b,
+  .prow--c,
+  .prow--d {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .prow__mediawrap,
+  .prow__body {
+    order: initial !important;
+    width: 100%;
+  }
+  .prow__num {
+    font-size: clamp(3.6rem, 16vw, 5.4rem);
+    top: -0.5em;
+  }
+  .prow--flip .prow__num {
+    right: auto;
+    left: -0.05em;
+  }
+  .prow__media {
+    aspect-ratio: 5 / 4;
+  }
+  .pv--wood .pv__wood {
+    width: 82%;
+  }
+  .pv--acrylic .pv__acr {
+    width: 82%;
+  }
+  .pv--card .pv__cardfront {
+    width: 64%;
+  }
+  .pv--card .pv__cardback {
+    width: 58%;
+  }
+  .pv--custom .pv__miniacr {
+    width: min(60%, 260px);
+  }
+}
+
+@media (max-width: 560px) {
+  .prow__specs > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-block: 10px;
+  }
+}

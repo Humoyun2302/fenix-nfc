@@ -1,0 +1,112 @@
+.how {
+  padding-block: clamp(96px, 12vw, 170px) 0;
+}
+
+.how__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-top: clamp(44px, 6vw, 80px);
+}
+.how__step {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(18px, 2vw, 28px);
+}
+.how__num {
+  display: block;
+  font-size: clamp(3.4rem, 5.5vw, 5.6rem);
+  margin-bottom: clamp(20px, 4vh, 44px);
+}
+.how__name {
+  font-size: clamp(1.3rem, 1.9vw, 1.85rem);
+}
+.how__line {
+  margin-top: 12px;
+  color: var(--mute);
+  font-size: 0.96rem;
+  max-width: 28ch;
+}
+
+/* IDEA → OBJECT → TAP → DIGITAL */
+.how__journey {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: clamp(64px, 9vw, 120px);
+  padding-top: 28px;
+}
+.how__jline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(10, 10, 10, 0.3);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.how__journey.in .how__jline {
+  transform: scaleX(1);
+  transition: transform 1.5s var(--ease) 0.15s;
+}
+.how__jword {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.how__journey.in .how__jword {
+  opacity: 1;
+  transform: none;
+}
+.how__jdot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  margin-top: -31.5px;
+}
+.how__jdot--ember {
+  background: var(--ember);
+  box-shadow: 0 0 0 0 rgba(255, 75, 0, 0.4);
+  animation: dotPulse 2.6s ease-out infinite;
+}
+@keyframes dotPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(255, 75, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 0, 0);
+  }
+}
+.how__jword:first-child {
+  align-items: flex-start;
+}
+.how__jword:first-child .how__jdot {
+  margin-left: 0;
+}
+.how__jword:last-child {
+  align-items: flex-end;
+}
+
+@media (max-width: 820px) {
+  .how__steps {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .how__num {
+    margin-bottom: 14px;
+  }
+  .how__jword .micro {
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+  }
+}

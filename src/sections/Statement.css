@@ -1,0 +1,124 @@
+.statement {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: clamp(96px, 13vw, 190px);
+}
+
+.statement__title {
+  margin-top: clamp(36px, 5vw, 64px);
+  font-size: clamp(1.62rem, 5.3vw, 6.1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.statement__line {
+  display: block;
+  white-space: nowrap;
+}
+
+/* OBJECT → TAP → PHONE */
+.statement__flow {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 4vw, 48px);
+  margin-top: clamp(54px, 8vw, 110px);
+  color: var(--paper);
+}
+.statement__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.statement__obj {
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.5));
+}
+.statement__nlabel {
+  color: rgba(243, 241, 235, 0.5);
+}
+
+.statement__pulse {
+  position: relative;
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+}
+.cssring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--ember);
+  border-radius: 50%;
+  opacity: 0;
+  animation: cssPulse 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.cssring--2 {
+  animation-delay: 1.5s;
+}
+@keyframes cssPulse {
+  0% {
+    transform: scale(0.42);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+.flow-arrow {
+  width: clamp(44px, 6vw, 72px);
+  flex: 0 0 auto;
+  stroke: rgba(243, 241, 235, 0.55);
+  stroke-width: 1.5;
+  margin-bottom: 30px;
+}
+.flow-arrow__line {
+  stroke-dasharray: 4 6;
+  animation: dashMove 4.5s linear infinite;
+}
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -50;
+  }
+}
+
+.mini-phone {
+  width: 62px;
+  color: rgba(243, 241, 235, 0.85);
+}
+
+.statement__para {
+  margin-top: clamp(52px, 8vw, 100px);
+  margin-left: min(38%, 460px);
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  color: rgba(243, 241, 235, 0.72);
+}
+
+@media (max-width: 760px) {
+  .statement__title .statement__line {
+    margin-left: 0 !important;
+  }
+  .statement__flow {
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  .statement__obj svg {
+    width: 118px;
+    height: auto;
+  }
+  .mini-phone {
+    width: 48px;
+  }
+  .statement__pulse {
+    width: 52px;
+    height: 52px;
+  }
+  .flow-arrow {
+    margin-bottom: 26px;
+  }
+  .statement__para {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,244 @@
+.uc {
+  padding-block: clamp(96px, 12vw, 170px) 0;
+}
+
+.uc__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: clamp(24px, 3.5vw, 56px);
+  margin-top: clamp(40px, 5.5vw, 72px);
+  align-items: start;
+}
+
+/* rail */
+.uc__rail {
+  position: sticky;
+  top: calc(var(--nav-h) + 26px);
+}
+.uc__tabs {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+  margin-top: 14px;
+}
+.uc__tab {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(12px, 1.6vw, 17px) 2px;
+  border-bottom: 1px solid var(--line);
+  color: var(--mute);
+  text-align: left;
+  transition: color 0.3s;
+}
+.uc__tab:hover {
+  color: var(--ink);
+}
+.uc__tab.on {
+  color: var(--ink);
+}
+.uc__tabnum {
+  width: 2.2em;
+  flex: 0 0 auto;
+}
+.uc__tab.on .uc__tabnum {
+  color: var(--ember);
+}
+.uc__tabname {
+  font-size: clamp(1.2rem, 1.75vw, 1.7rem);
+}
+.uc__tabarrow {
+  margin-left: auto;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  flex: 0 0 auto;
+}
+.uc__tab.on .uc__tabarrow {
+  opacity: 1;
+  transform: none;
+}
+
+.uc__headlines {
+  display: grid;
+  margin-top: 26px;
+}
+.uc__headline {
+  grid-area: 1 / 1;
+  font-size: clamp(1.05rem, 1.45vw, 1.32rem);
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  max-width: 26ch;
+  opacity: 0;
+  transform: translateY(10px);
+  visibility: hidden;
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), visibility 0s 0.45s;
+}
+.uc__headline.on {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.45s var(--ease) 0.1s, transform 0.45s var(--ease) 0.1s, visibility 0s;
+}
+
+/* stage — slides stacked in one grid cell for a true crossfade */
+.uc__stagewrap {
+  display: grid;
+  min-width: 0;
+}
+.uc__slide {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: clamp(10px, 1.8vw, 26px);
+  align-items: center;
+  opacity: 0;
+  transform: translateY(16px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease), visibility 0s 0.55s;
+}
+.uc__slide.on {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.55s var(--ease) 0.08s, transform 0.55s var(--ease) 0.08s, visibility 0s;
+}
+
+.uc__scenebox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.uc-scene {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.uc__caption {
+  padding-left: 4px;
+}
+
+/* scene pulse */
+.sp-ring {
+  fill: none;
+  stroke: #ff4b00;
+  stroke-width: 1.4;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spRing 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.sp-r2 {
+  animation-delay: 1.5s;
+}
+@keyframes spRing {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.sp-label {
+  fill: #ff4b00;
+  font-family: var(--font-b);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+/* connector */
+.uc-conn {
+  width: clamp(52px, 5.5vw, 84px);
+  stroke: rgba(10, 10, 10, 0.5);
+  stroke-width: 1.5;
+  flex: 0 0 auto;
+}
+.uc-conn__line {
+  stroke-dasharray: 4 6;
+  animation: dashMove 4.5s linear infinite;
+}
+
+.uc__phone {
+  --phone-w: clamp(196px, 16.5vw, 248px);
+  justify-self: end;
+}
+
+/* ————— mobile / tablet ————— */
+@media (max-width: 960px) {
+  .uc__layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+  .uc__rail {
+    position: static;
+  }
+  .uc__tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    border-top: 0;
+    margin-top: 12px;
+    padding-block: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .uc__tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .uc__tab {
+    flex: 0 0 auto;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 16px;
+    gap: 8px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .uc__tab.on {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .uc__tab.on .uc__tabnum {
+    color: var(--ember);
+  }
+  .uc__tabname {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+  .uc__tabarrow {
+    display: none;
+  }
+  .uc__headlines {
+    margin-top: 18px;
+  }
+
+  .uc__slide {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 18px;
+  }
+  .uc__scenebox {
+    width: 100%;
+    max-width: 470px;
+    min-width: 0;
+  }
+  .uc__caption {
+    align-self: center;
+    padding-left: 0;
+  }
+  .uc-conn {
+    transform: rotate(90deg);
+    width: 44px;
+    margin-block: -4px;
+  }
+  .uc__phone {
+    --phone-w: min(240px, 62vw);
+    justify-self: center;
+  }
+}

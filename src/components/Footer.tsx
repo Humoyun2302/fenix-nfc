@@ -1,81 +1,65 @@
-import { Wordmark } from '@/components/Wordmark'
-import { contact, contactChannels } from '@/data/contact'
-import { navItems, type NavId } from '@/data/navigation'
-import { useI18n } from '@/i18n'
-
-const year = new Date().getFullYear()
+import { Instagram, Mail, Phone, Send } from 'lucide-react'
+import { useLang } from '../locales'
+import { Logo } from './marks'
+import { LangSwitcher } from './LangSwitcher'
+import './Footer.css'
 
 export function Footer() {
-  const { t } = useI18n()
-
-  const labels: Record<NavId, string> = {
-    products: t.nav.products,
-    solutions: t.nav.solutions,
-    work: t.nav.projects,
-    process: t.nav.howItWorks,
-  }
-
-  const channelLabel = {
-    telegram: t.contact.telegram,
-    instagram: t.contact.instagram,
-    phone: t.contact.phone,
-  }
+  const { t } = useLang()
+  const pages = [
+    { href: '#products', label: t.nav.products },
+    { href: '#solutions', label: t.nav.solutions },
+    { href: '#work', label: t.nav.work },
+    { href: '#how', label: t.nav.how },
+  ]
 
   return (
-    <footer className="relative border-t border-[color:var(--fx-hairline)]">
-      <div className="shell py-10 sm:py-14">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-[22rem]">
-            <a href="#top" className="inline-flex min-h-11 items-center" aria-label={t.a11y.home}>
-              <Wordmark className="h-[1.05rem] w-auto" />
+    <footer className="footer">
+      <div className="container footer__grid">
+        <div className="footer__brand">
+          <a href="#top" className="brand footer__brandlink" aria-label="Fenix NFC">
+            <Logo size={22} />
+            <span className="brand__word">FENIX</span>
+            <span className="brand__tag brand__tag--inv">NFC</span>
+          </a>
+          <p className="footer__tagline">{t.footer.tagline}</p>
+          <span className="micro footer__place">{t.footer.place}</span>
+        </div>
+
+        <nav className="footer__col" aria-label={t.footer.colPages}>
+          <span className="micro footer__head">{t.footer.colPages}</span>
+          {pages.map((p) => (
+            <a key={p.href} href={p.href} className="footer__link">
+              {p.label}
             </a>
-            <p className="mt-4 text-[0.9375rem] leading-relaxed text-slate">{t.footer.tagline}</p>
-          </div>
+          ))}
+        </nav>
 
-          <nav aria-label={t.a11y.footerNav}>
-            <ul className="flex flex-wrap gap-x-6 gap-y-3">
-              {navItems.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={item.href}
-                    className="text-[0.875rem] font-medium text-graphite transition-colors duration-300 hover:text-ink"
-                  >
-                    {labels[item.id]}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href="#contact"
-                  className="text-[0.875rem] font-medium text-graphite transition-colors duration-300 hover:text-ink"
-                >
-                  {t.nav.contact}
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {contactChannels.map((channel) => (
-              <li key={channel.id}>
-                <a
-                  href={channel.href}
-                  {...(channel.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
-                  className="text-[0.875rem] font-medium text-slate transition-colors duration-300 hover:text-ink"
-                >
-                  {channelLabel[channel.id]}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="footer__col">
+          <span className="micro footer__head">{t.footer.colContact}</span>
+          <a href="https://t.me/fenixnfc" target="_blank" rel="noreferrer" className="footer__link">
+            <Send size={13} strokeWidth={1.8} /> {t.cta.tg}
+          </a>
+          <a href="mailto:hello@fenixnfc.uz" className="footer__link">
+            <Mail size={13} strokeWidth={1.8} /> {t.cta.email}
+          </a>
+          <a href="tel:+998900000000" className="footer__link">
+            <Phone size={13} strokeWidth={1.8} /> {t.cta.phoneLabel}
+          </a>
+          <a href="https://instagram.com/fenixnfc" target="_blank" rel="noreferrer" className="footer__link">
+            <Instagram size={13} strokeWidth={1.8} /> Instagram
+          </a>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-[color:var(--fx-hairline)] pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[0.75rem] tracking-[-0.01em] text-ash">
-            © {year} {contact.brand}
-          </p>
-          <p className="text-[0.75rem] tracking-[-0.01em] text-ash">{t.footer.note}</p>
+        <div className="footer__col">
+          <span className="micro footer__head">{t.footer.colLang}</span>
+          <LangSwitcher className="langs--inv footer__langs" />
         </div>
+      </div>
+
+      <div className="container footer__bottom">
+        <span className="micro footer__rights">{t.footer.rights}</span>
+        <span className="micro footer__stamp">FENIX / NFC / 2026</span>
       </div>
     </footer>
   )
