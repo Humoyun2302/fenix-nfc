@@ -30,27 +30,32 @@ src/
   locales/      uz.ts · ru.ts · en.ts · LangProvider (typed dictionaries —
                 a missing translation is a compile error; UZ is the default,
                 choice persists in localStorage "fenix.lang")
-  data/         products.ts · usecases.ts · projects.ts (layout + icon data)
+  data/         products.ts · usecases.ts (icons) · works.ts (photography
+                index: hero/product photos, per-scene client products,
+                6 featured projects, 20-item archive)
   sections/     Hero · Statement · Products · UseCases · HowItWorks ·
                 Projects · Cta  (one file + one css each)
-  components/   WoodPlaque · AcrylicPlaque · BusinessCard · RoundTag (vector
-                product renders), Phone (realistic smartphone demo), Scene
-                (per-industry environments), Nav, Footer, marks, flow, Reveal
+  components/   Phone (realistic smartphone demo), Scene (photo + hairline
+                environment per industry), Nav, Footer, marks, flow, Reveal,
+                WoodPlaque/AcrylicPlaque/… (vector renders, still used in
+                the Statement and CTA ink sections)
   styles/       global.css (design tokens, grain, type system, buttons)
-  assets/       plaquePhoto.ts (real photography slot — see below)
+  assets/works/ 27 optimized WebP product photographs (real client work)
 ```
 
-## Using the real plaque photograph
+## Product photography
 
-The site currently uses a vector studio render of the wooden plaque.
-When the real photo is ready:
+Real photos live in `src/assets/works/` and are indexed in
+`src/data/works.ts` (which piece appears in the hero, each product row,
+each use-case scene, the featured project grid and the archive).
 
-1. Drop the file at `src/assets/wood-plaque.jpg`
-2. Open `src/assets/plaquePhoto.ts`, uncomment the import and set
-   `plaquePhoto = photo`
-
-Every plaque on the site (hero, products, projects, scenes) switches to the
-photograph automatically, clipped to the same rounded geometry.
+Presentation trick: photos are shot on white studio grounds, so they are
+rendered with `mix-blend-mode: multiply` (class `.ph`) over explicit
+light backgrounds — the ground dissolves into the page. Free-floating
+photos (hero, scenes) additionally get a paper-colored vignette overlay
+(`.hero__fade` / `.scene__fade`) so their edges feather into the paper.
+Any new photo: convert to WebP (~1200px wide, quality 82), drop it in
+`assets/works/`, and reference it from `works.ts`.
 
 ## Placeholders to replace before launch
 

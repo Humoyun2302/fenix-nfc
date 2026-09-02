@@ -1,5 +1,6 @@
 import { useLang } from '../locales'
 import { Reveal } from '../components/Reveal'
+import { MaskLine } from '../components/MaskLine'
 import { SectionMark } from '../components/SectionMark'
 import './HowItWorks.css'
 
@@ -9,9 +10,9 @@ export function HowItWorks() {
     <section id="how" className="how">
       <div className="container">
         <SectionMark num="05" label={t.how.mark} />
-        <Reveal as="h2" className="display sec-title how__title" delay={60}>
-          {t.how.title}
-        </Reveal>
+        <h2 className="display sec-title how__title">
+          <MaskLine delay={60}>{t.how.title}</MaskLine>
+        </h2>
 
         <div className="how__steps">
           {t.how.steps.map((s, i) => (

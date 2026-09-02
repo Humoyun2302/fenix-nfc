@@ -2,18 +2,16 @@ import type { ReactNode } from 'react'
 import { useLang } from '../locales'
 import { PRODUCTS } from '../data/products'
 import type { ProductId } from '../data/products'
+import { PRODUCT_PHOTOS } from '../data/works'
 import { Reveal } from '../components/Reveal'
+import { MaskLine } from '../components/MaskLine'
 import { SectionMark } from '../components/SectionMark'
-import { WoodPlaque } from '../components/WoodPlaque'
-import { AcrylicPlaque } from '../components/AcrylicPlaque'
-import { BusinessCard } from '../components/BusinessCard'
-import { RoundTag } from '../components/RoundTag'
 import './Products.css'
 
 function DimensionLine() {
   return (
     <svg className="pv__dim" viewBox="0 0 150 22" aria-hidden="true">
-      <g stroke="rgba(10,10,10,0.4)" strokeWidth="1">
+      <g stroke="rgba(91,140,255,0.6)" strokeWidth="1">
         <path d="M4 4 V14 M146 4 V14 M4 9 H146" />
       </g>
       <text
@@ -23,7 +21,7 @@ function DimensionLine() {
         fontFamily="var(--font-b)"
         fontSize="8.5"
         letterSpacing="2"
-        fill="rgba(10,10,10,0.45)"
+        fill="rgba(100,116,139,0.9)"
       >
         140 × 95 MM
       </text>
@@ -31,32 +29,68 @@ function DimensionLine() {
   )
 }
 
-function Visual({ id }: { id: ProductId }): ReactNode {
+function Visual({ id, alt }: { id: ProductId; alt: string }): ReactNode {
   switch (id) {
     case 'wood':
       return (
         <div className="pv pv--wood">
-          <WoodPlaque className="pv__wood" />
+          <img
+            className="ph pv__photo"
+            src={PRODUCT_PHOTOS.wood.img}
+            width={PRODUCT_PHOTOS.wood.w}
+            height={PRODUCT_PHOTOS.wood.h}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+          />
           <DimensionLine />
         </div>
       )
     case 'acrylic':
       return (
         <div className="pv pv--acrylic">
-          <AcrylicPlaque tone="dark" className="pv__acr" />
+          <div className="pv__plate">
+            <img
+              className="ph"
+              src={PRODUCT_PHOTOS.acrylic.img}
+              width={PRODUCT_PHOTOS.acrylic.w}
+              height={PRODUCT_PHOTOS.acrylic.h}
+              alt={`${alt} — ${PRODUCT_PHOTOS.acrylic.name}`}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       )
     case 'card':
       return (
         <div className="pv pv--card">
-          <BusinessCard variant="back" className="pv__cardback" />
-          <BusinessCard className="pv__cardfront" />
+          <img
+            className="ph pv__photo"
+            src={PRODUCT_PHOTOS.card.img}
+            width={PRODUCT_PHOTOS.card.w}
+            height={PRODUCT_PHOTOS.card.h}
+            alt={`${alt} — ${PRODUCT_PHOTOS.card.name}`}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       )
     case 'custom':
       return (
         <div className="pv pv--custom">
-          <RoundTag className="pv__tag" />
+          {([PRODUCT_PHOTOS.customA, PRODUCT_PHOTOS.customB] as const).map((p) => (
+            <img
+              key={p.name}
+              className="ph pv__mini"
+              src={p.img}
+              width={p.w}
+              height={p.h}
+              alt={`${alt} — ${p.name}`}
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
           <svg className="pv__dash" viewBox="0 0 200 200" aria-hidden="true">
             <rect
               x="4"
@@ -65,13 +99,21 @@ function Visual({ id }: { id: ProductId }): ReactNode {
               height="192"
               rx="28"
               fill="none"
-              stroke="rgba(10,10,10,0.35)"
+              stroke="rgba(91,140,255,0.5)"
               strokeWidth="1.5"
               strokeDasharray="7 8"
             />
-            <path d="M100 74 V126 M74 100 H126" stroke="#FF4B00" strokeWidth="2" strokeLinecap="round" />
+            <path d="M100 74 V126 M74 100 H126" stroke="#5B8CFF" strokeWidth="2" strokeLinecap="round" />
           </svg>
-          <AcrylicPlaque tone="light" className="pv__miniacr" />
+          <img
+            className="ph pv__mini"
+            src={PRODUCT_PHOTOS.customC.img}
+            width={PRODUCT_PHOTOS.customC.w}
+            height={PRODUCT_PHOTOS.customC.h}
+            alt={`${alt} — ${PRODUCT_PHOTOS.customC.name}`}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       )
   }
@@ -87,9 +129,9 @@ export function Products() {
         <SectionMark num="03" label={t.products.mark} />
         <h2 className="display sec-title">
           {t.products.title.map((line, i) => (
-            <Reveal as="span" key={line} className="sec-title__line" delay={i * 90}>
+            <MaskLine key={line} className="sec-title__line" delay={i * 100}>
               {line}
-            </Reveal>
+            </MaskLine>
           ))}
         </h2>
       </div>
@@ -104,7 +146,7 @@ export function Products() {
                   {p.num}
                 </span>
                 <div className={`prow__media field--${p.field}`}>
-                  <Visual id={p.id} />
+                  <Visual id={p.id} alt={item.name} />
                 </div>
               </Reveal>
 

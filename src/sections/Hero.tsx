@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react'
 import { ArrowDown, ArrowRight } from 'lucide-react'
 import { useLang } from '../locales'
 import { useTilt } from '../hooks/useTilt'
-import { WoodPlaque } from '../components/WoodPlaque'
-import { Reveal } from '../components/Reveal'
+import { useMagnet } from '../hooks/useMagnet'
+import { WOOD_TAB } from '../data/works'
+import { MaskLine } from '../components/MaskLine'
 import './Hero.css'
 
 /** Renders a headline line, painting a trailing period in the accent color. */
@@ -23,6 +24,8 @@ export function Hero() {
   const { t, lang } = useLang()
   const tiltRef = useTilt<HTMLDivElement>(1.8)
   const stageRef = useRef<HTMLDivElement>(null)
+  const magnetA = useMagnet<HTMLAnchorElement>()
+  const magnetB = useMagnet<HTMLAnchorElement>()
 
   // Slight vertical drift of the product while scrolling out of the hero.
   useEffect(() => {
@@ -56,18 +59,18 @@ export function Hero() {
             {/* key remounts the intro animation when the language changes */}
             <h1 className="display hero__title" key={lang}>
               {t.hero.title.map((line, i) => (
-                <span className="hero__line" key={i} style={{ animationDelay: `${120 + i * 100}ms` }}>
+                <MaskLine className="hero__line" key={i} delay={140 + i * 110}>
                   <AccentLine text={line} />
-                </span>
+                </MaskLine>
               ))}
             </h1>
             <p className="hero__sub">{t.hero.sub}</p>
             <div className="hero__ctas">
-              <a className="btn btn--solid" href="#products">
+              <a className="btn btn--solid" href="#products" ref={magnetA}>
                 {t.hero.ctaProducts}
                 <ArrowRight className="btn__arrow" size={15} strokeWidth={2} />
               </a>
-              <a className="btn btn--line" href="#contact">
+              <a className="btn btn--line" href="#contact" ref={magnetB}>
                 {t.hero.ctaContact}
                 <ArrowRight className="btn__arrow" size={15} strokeWidth={2} />
               </a>
@@ -76,7 +79,18 @@ export function Hero() {
 
           <div className="hero__stage" ref={stageRef}>
             <div className="hero__tilt" ref={tiltRef}>
-              <WoodPlaque className="hero__plaque" title={t.hero.alt} />
+              <div className="hero__photowrap">
+                <img
+                  className="ph hero__photo"
+                  src={WOOD_TAB.img}
+                  width={WOOD_TAB.w}
+                  height={WOOD_TAB.h}
+                  alt={t.hero.alt}
+                  fetchPriority="high"
+                  decoding="async"
+                />
+                <i className="hero__fade" aria-hidden="true" />
+              </div>
               <div className="callout callout--nfc">
                 <span className="micro">{t.hero.callouts.nfc}</span>
                 <i aria-hidden="true" />
@@ -90,16 +104,18 @@ export function Hero() {
                 <i aria-hidden="true" />
               </div>
             </div>
-            <div className="hero__shadow" aria-hidden="true" />
           </div>
         </div>
 
-        <Reveal className="hero__foot" delay={500}>
+        {/* pinned to the viewport bottom at load — animated on a clock, not on
+            scroll: an IntersectionObserver never fires for it (its pre-reveal
+            offset keeps it below the shrunken observer root). */}
+        <div className="hero__foot">
           <span className="micro micro--mute hero__caption">{t.hero.caption}</span>
           <a href="#concept" className="hero__scroll" aria-label={t.common.scroll}>
             <ArrowDown size={16} strokeWidth={1.75} />
           </a>
-        </Reveal>
+        </div>
       </div>
     </section>
   )

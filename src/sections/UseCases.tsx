@@ -5,6 +5,7 @@ import { useLang } from '../locales'
 import { USE_CASES } from '../data/usecases'
 import type { CaseId } from '../data/usecases'
 import { Reveal } from '../components/Reveal'
+import { MaskLine } from '../components/MaskLine'
 import { SectionMark } from '../components/SectionMark'
 import { Scene } from '../components/Scene'
 import { Phone } from '../components/Phone'
@@ -37,9 +38,9 @@ export function UseCases() {
         <SectionMark num="04" label={t.cases.mark} />
         <h2 className="display sec-title">
           {t.cases.title.map((line, i) => (
-            <Reveal as="span" key={line} className="sec-title__line" delay={i * 90}>
+            <MaskLine key={line} className="sec-title__line" delay={i * 100}>
               {line}
-            </Reveal>
+            </MaskLine>
           ))}
         </h2>
       </div>

@@ -54,8 +54,8 @@
   position: relative;
   height: 100%;
   border-radius: calc(var(--phone-w, 260px) * 0.128);
-  background: #f7f5f0;
-  color: #101010;
+  background: #fbfcff;
+  color: #1a1a2e;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -98,7 +98,7 @@
   width: calc(var(--phone-w, 260px) * 0.15);
   height: calc(var(--phone-w, 260px) * 0.15);
   border-radius: 50%;
-  background: #0a0a0a;
+  background: #1a1a2e;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
@@ -117,15 +117,15 @@
 }
 .scr-sub {
   font-size: calc(var(--phone-w, 260px) * 0.04);
-  color: #8b867b;
+  color: #64748b;
   font-weight: 520;
 }
 
 /* primary tile */
 .scr-tile {
   margin: 0 calc(var(--phone-w, 260px) * 0.068);
-  background: #0a0a0a;
-  color: #f3f1eb;
+  background: linear-gradient(180deg, #79a1ff 0%, #4a7ae8 100%);
+  color: #ffffff;
   border-radius: calc(var(--phone-w, 260px) * 0.042);
   padding: calc(var(--phone-w, 260px) * 0.048) calc(var(--phone-w, 260px) * 0.052);
   display: flex;
@@ -149,7 +149,7 @@
 /* wifi card */
 .scr-wifi {
   margin: 0 calc(var(--phone-w, 260px) * 0.068);
-  border: 1px solid rgba(10, 10, 10, 0.14);
+  border: 1px solid rgba(91, 140, 255, 0.28);
   border-radius: calc(var(--phone-w, 260px) * 0.042);
   padding: calc(var(--phone-w, 260px) * 0.042) calc(var(--phone-w, 260px) * 0.05);
   display: flex;
@@ -171,7 +171,7 @@
 }
 .scr-wifi__hint {
   font-size: calc(var(--phone-w, 260px) * 0.035);
-  color: #8b867b;
+  color: #64748b;
 }
 .scr-wifi__copy {
   margin-left: auto;
@@ -228,12 +228,12 @@
   margin: calc(var(--phone-w, 260px) * 0.035) calc(var(--phone-w, 260px) * 0.068) 0;
 }
 .scr-chip {
-  border: 1px solid rgba(10, 10, 10, 0.16);
+  border: 1px solid rgba(91, 140, 255, 0.3);
   border-radius: 999px;
   padding: calc(var(--phone-w, 260px) * 0.012) calc(var(--phone-w, 260px) * 0.032);
   font-size: calc(var(--phone-w, 260px) * 0.034);
   font-weight: 580;
-  color: #4c473e;
+  color: #475569;
 }
 
 /* action rows */
@@ -246,7 +246,7 @@
   gap: calc(var(--phone-w, 260px) * 0.036);
   padding: 0 calc(var(--phone-w, 260px) * 0.068);
   height: calc(var(--phone-w, 260px) * 0.155);
-  border-top: 1px solid rgba(10, 10, 10, 0.07);
+  border-top: 1px solid rgba(91, 140, 255, 0.12);
   font-size: calc(var(--phone-w, 260px) * 0.046);
   font-weight: 560;
 }
@@ -277,7 +277,7 @@
   font-size: calc(var(--phone-w, 260px) * 0.03);
   font-weight: 650;
   letter-spacing: 0.22em;
-  color: #a49e91;
+  color: #94a3b8;
 }
 .phone__home {
   position: absolute;

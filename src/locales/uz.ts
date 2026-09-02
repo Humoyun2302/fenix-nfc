@@ -9,7 +9,7 @@ export const uz = {
     menuOpen: 'Menyuni ochish',
     menuClose: 'Menyuni yopish',
     langLabel: 'Sayt tili',
-    tap: 'TEGINISH',
+    tap: 'Teginish',
     scroll: 'Pastga',
   },
   nav: {
@@ -20,27 +20,28 @@ export const uz = {
     contact: 'Bog‘lanish',
   },
   hero: {
-    kicker: ['FENIX', 'NFC TIZIMLARI', '2026'],
-    place: 'TOSHKENT, O‘ZBEKISTON',
-    title: ['BIR TEGINISH.', 'HAMMASI', 'TAYYOR.'],
+    kicker: ['Fenix', 'NFC tizimlari', '2026'],
+    place: 'Toshkent, O‘zbekiston',
+    title: ['Bir teginish.', 'Hammasi tayyor.'],
     sub: 'Biznes uchun zamonaviy NFC mahsulotlari va raqamli yechimlar.',
     ctaProducts: 'Mahsulotlarni ko‘rish',
     ctaContact: 'Bog‘lanish',
-    caption: '01 — YOG‘OCH NFC PLAKETKA · TABIIY YOG‘OCH · NFC + QR',
+    caption: '01 — Yog‘och NFC plaketka · tabiiy yog‘och · NFC + QR',
     callouts: { nfc: 'NFC chip', qr: 'QR kod', engrave: 'Lazer o‘yma' },
     alt: 'Fenix yog‘och NFC plaketkasi — chapda NFC belgisi, o‘ngda QR kod',
   },
+  ticker: ['Bir teginish', 'Hammasi tayyor', 'NFC + QR', 'Yog‘och · Akril · Karta', 'Toshkent'],
   statement: {
-    mark: 'FENIX NIMA?',
-    lines: ['BIZ JISMONIY', 'BUYUMLARNI', 'RAQAMLI TAJRIBAGA', 'ULAYMIZ.'],
+    mark: 'Fenix nima?',
+    lines: ['Biz jismoniy', 'buyumlarni', 'raqamli tajribaga', 'ulaymiz.'],
     para: 'Fenix NFC mahsulotlari kerakli ma’lumotni qidirishsiz, yozishsiz va ilovasiz ochadi.',
-    object: 'BUYUM',
-    tapWord: 'TEGINISH',
-    phone: 'TELEFON',
+    object: 'Buyum',
+    tapWord: 'Teginish',
+    phone: 'Telefon',
   },
   products: {
-    mark: 'MAHSULOTLAR',
-    title: ['TO‘RT FORMAT.', 'BITTA TEGINISH.'],
+    mark: 'Mahsulotlar',
+    title: ['To‘rt format.', 'Bitta teginish.'],
     labels: {
       material: 'Material',
       tech: 'Texnologiya',
@@ -83,14 +84,14 @@ export const uz = {
     },
   },
   cases: {
-    mark: 'YECHIMLAR',
-    title: ['BITTA TEXNOLOGIYA.', 'TURLI JOYLAR.'],
+    mark: 'Yechimlar',
+    title: ['Bitta texnologiya.', 'Turli joylar.'],
     hint: 'Sohani tanlang',
     items: {
       restaurant: {
         label: 'Restoran',
         headline: 'Stoldan menyugacha — bir tegishda.',
-        caption: 'YOG‘OCH PLAKETKA — RESTORAN STOLIDA',
+        caption: 'Jiyda — restoran stolida',
         screen: {
           title: 'Restoran',
           sub: 'Raqamli menyu',
@@ -102,7 +103,7 @@ export const uz = {
       hotel: {
         label: 'Mehmonxona',
         headline: 'Mehmon uchun hamma narsa bir joyda.',
-        caption: 'AKRIL PLAKETKA — MEHMONXONA XONASIDA',
+        caption: 'Oromee — mehmonxona xonasida',
         screen: {
           title: 'Mehmonxona',
           sub: '214-xona',
@@ -114,7 +115,7 @@ export const uz = {
       doctor: {
         label: 'Shifokor',
         headline: 'Mutaxassis haqida kerakli ma’lumot — bir tegishda.',
-        caption: 'PLAKETKA — QABUL STOLIDA',
+        caption: 'Sadaf klinikasi — qabul stolida',
         screen: {
           title: 'Shifokor profili',
           sub: 'Kardiolog',
@@ -126,7 +127,7 @@ export const uz = {
       gym: {
         label: 'Sportzal',
         headline: 'Har bir trenajyor — shaxsiy qo‘llanma.',
-        caption: 'NFC BELGISI — TRENAJYORDA',
+        caption: 'Space — trenajyor yonida',
         screen: {
           title: 'Trenajyor 07',
           sub: 'Ko‘krak press',
@@ -138,7 +139,7 @@ export const uz = {
       business: {
         label: 'Biznes',
         headline: 'Vizitka. Faqat aqlliroq.',
-        caption: 'NFC VIZITKA — UCHRASHUVDA',
+        caption: 'Omnia — NFC vizitka',
         screen: {
           title: 'Fenix NFC',
           sub: 'Raqamli vizitka',
@@ -150,45 +151,34 @@ export const uz = {
     },
   },
   how: {
-    mark: 'JARAYON',
-    title: 'QANDAY ISHLAYDI',
+    mark: 'Jarayon',
+    title: 'Qanday ishlaydi',
     steps: [
       { name: 'G‘oyani tanlang', line: 'Mijozingiz nimani ochishi kerak?' },
       { name: 'Biz yaratamiz', line: 'Jismoniy NFC mahsulot va unga ulangan raqamli tajriba.' },
       { name: 'Tegizing', line: 'Mijoz hammasini bir zumda ochadi.' },
     ],
-    journey: ['G‘OYA', 'BUYUM', 'TEGINISH', 'RAQAMLI'],
+    journey: ['G‘oya', 'Buyum', 'Teginish', 'Raqamli'],
   },
   work: {
-    mark: 'TANLANGAN ISHLAR',
-    title: 'LOYIHALAR',
+    mark: 'Tanlangan ishlar',
+    title: 'Loyihalar',
     meta: { type: 'Turi', product: 'Mahsulot', year: 'Yil' },
     items: {
-      menu: {
-        name: 'Restoran menyu tizimi',
-        type: 'Raqamli menyu',
-        product: 'Yog‘och plaketka',
-        year: '2025',
-      },
-      card: {
-        name: 'Shaxsiy NFC vizitka',
-        type: 'Raqamli profil',
-        product: 'NFC karta',
-        year: '2026',
-      },
-      custom: {
-        name: 'Maxsus buyurtma',
-        type: 'Mahsulot + sahifa',
-        product: 'Akril / yog‘och',
-        year: '2026',
-      },
+      caravan: { name: 'Caravan House', type: 'Restoran plaketkasi', product: 'Bosma plaketka + NFC', year: '2025' },
+      personal: { name: 'Shaxzod Tulayev', type: 'Shaxsiy raqamli vizitka', product: 'NFC karta', year: '2026' },
+      guest: { name: 'Homewithakash', type: 'Mehmon uyi tizimi', product: 'NFC + QR plaketka', year: '2025' },
+      pizza: { name: 'Bellissimo Pizza', type: 'Tarmoq menyu tizimi', product: 'Akril plaketka', year: '2026' },
+      forel: { name: 'Restoran Forel', type: 'Stol plaketkasi', product: 'Akril, oltin bosma', year: '2025' },
+      coffee: { name: 'N.Y Coffee', type: 'Kafe menyu tizimi', product: 'Akril plaketka', year: '2026' },
     },
+    archive: { title: 'Barcha ishlar', hint: '20+ loyiha · 2025–2026' },
   },
   cta: {
-    mark: 'ALOQA',
-    title: ['G‘OYANGIZ', 'BORMI?'],
+    mark: 'Aloqa',
+    title: ['G‘oyangiz', 'bormi?'],
     line: 'Uni bir tegishda ochiladigan qilamiz.',
-    button: 'BOG‘LANISH',
+    button: 'Bog‘lanish',
     tg: 'Telegram',
     email: 'Email',
     phoneLabel: 'Telefon',
@@ -198,7 +188,7 @@ export const uz = {
     colPages: 'Sahifalar',
     colContact: 'Aloqa',
     colLang: 'Til',
-    place: 'TOSHKENT — O‘ZBEKISTON',
+    place: 'Toshkent — O‘zbekiston',
     rights: '© 2026 Fenix. Barcha huquqlar himoyalangan.',
   },
 }

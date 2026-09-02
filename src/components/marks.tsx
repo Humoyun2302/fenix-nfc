@@ -123,11 +123,11 @@ export function Logo({
   tone?: 'ink' | 'paper'
   className?: string
 }) {
-  const dot = tone === 'ink' ? '#0A0A0A' : '#F3F1EB'
+  const dot = tone === 'ink' ? '#1A1A2E' : '#FFFFFF'
   return (
     <svg viewBox="0 0 28 28" width={size} height={size} fill="none" className={className} aria-hidden="true">
       <circle cx="7.5" cy="14" r="2.2" fill={dot} />
-      <path d={NFC_PATH} stroke="#FF4B00" strokeWidth={2.4} strokeLinecap="round" />
+      <path d={NFC_PATH} stroke="#5B8CFF" strokeWidth={2.4} strokeLinecap="round" />
     </svg>
   )
 }

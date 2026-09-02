@@ -1,0 +1,136 @@
+/* photographed product + hairline environment, on a soft white card */
+.scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--white);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.scene__photowrap {
+  position: absolute;
+  left: 1%;
+  bottom: 2%;
+  width: 66%;
+}
+.scene__photo {
+  width: 100%;
+  height: auto;
+}
+/* white vignette dissolves the photograph's studio edges into the card */
+.scene__fade {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--white), rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0) 85%, var(--white)),
+    linear-gradient(to bottom, var(--white), rgba(255, 255, 255, 0) 13%, rgba(255, 255, 255, 0) 84%, var(--white));
+}
+/* the framing varies per photo — nudge each product */
+.scene--restaurant .scene__photowrap {
+  width: 68%;
+  left: 0;
+  bottom: 0;
+}
+.scene--hotel .scene__photowrap {
+  width: 70%;
+  left: -1%;
+  bottom: 1%;
+}
+.scene--doctor .scene__photowrap {
+  width: 70%;
+  left: -1%;
+  bottom: 1%;
+}
+.scene--gym .scene__photowrap {
+  width: 66%;
+  left: 1%;
+  bottom: 2%;
+}
+.scene--business .scene__photowrap {
+  width: 72%;
+  left: -1%;
+  bottom: -2%;
+}
+
+.scene__props {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* tap pulse over the product's NFC zone */
+.scene__pulse {
+  position: absolute;
+  left: var(--px, 50%);
+  top: var(--py, 50%);
+  width: 12px;
+  height: 12px;
+}
+.scene__pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ember);
+}
+.scene__ring {
+  position: absolute;
+  inset: -14px;
+  border: 1px solid var(--ember);
+  border-radius: 50%;
+  opacity: 0;
+  animation: sceneRing 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.scene__ring--2 {
+  animation-delay: 1.5s;
+}
+@keyframes sceneRing {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.scene__tap {
+  position: absolute;
+  left: 22px;
+  top: -16px;
+  color: var(--blue-deep);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(26, 26, 46, 0.1);
+}
+
+/* NFC zone per client product */
+.scene--restaurant .scene__pulse {
+  --px: 46%;
+  --py: 63%;
+}
+.scene--hotel .scene__pulse {
+  --px: 38%;
+  --py: 62%;
+}
+.scene--doctor .scene__pulse {
+  --px: 40%;
+  --py: 56%;
+}
+.scene--gym .scene__pulse {
+  --px: 38%;
+  --py: 48%;
+}
+.scene--business .scene__pulse {
+  --px: 56%;
+  --py: 36%;
+}

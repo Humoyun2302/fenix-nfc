@@ -11,7 +11,7 @@ export const en: Dict = {
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
     langLabel: 'Site language',
-    tap: 'TAP',
+    tap: 'Tap',
     scroll: 'Scroll',
   },
   nav: {
@@ -22,27 +22,28 @@ export const en: Dict = {
     contact: 'Contact',
   },
   hero: {
-    kicker: ['FENIX', 'NFC SYSTEMS', '2026'],
-    place: 'TASHKENT, UZBEKISTAN',
-    title: ['ONE TAP.', 'EVERYTHING', 'YOU NEED.'],
+    kicker: ['Fenix', 'NFC systems', '2026'],
+    place: 'Tashkent, Uzbekistan',
+    title: ['One tap.', 'Everything you need.'],
     sub: 'Modern NFC products and digital experiences for business.',
     ctaProducts: 'View products',
     ctaContact: 'Contact',
-    caption: '01 — WOODEN NFC PLAQUE · NATURAL WOOD · NFC + QR',
+    caption: '01 — Wooden NFC plaque · natural wood · NFC + QR',
     callouts: { nfc: 'NFC chip', qr: 'QR code', engrave: 'Laser engraving' },
     alt: 'Fenix wooden NFC plaque — NFC symbol on the left, QR code on the right',
   },
+  ticker: ['One tap', 'Everything ready', 'NFC + QR', 'Wood · Acrylic · Card', 'Tashkent'],
   statement: {
-    mark: 'WHAT IS FENIX?',
-    lines: ['WE CONNECT', 'PHYSICAL OBJECTS', 'TO DIGITAL', 'EXPERIENCES.'],
+    mark: 'What is Fenix?',
+    lines: ['We connect', 'physical objects', 'to digital', 'experiences.'],
     para: 'Fenix NFC products open the right information instantly — no searching, no typing, no apps.',
-    object: 'OBJECT',
-    tapWord: 'TAP',
-    phone: 'PHONE',
+    object: 'Object',
+    tapWord: 'Tap',
+    phone: 'Phone',
   },
   products: {
-    mark: 'PRODUCTS',
-    title: ['FOUR FORMATS.', 'ONE TAP.'],
+    mark: 'Products',
+    title: ['Four formats.', 'One tap.'],
     labels: {
       material: 'Material',
       tech: 'Technology',
@@ -85,14 +86,14 @@ export const en: Dict = {
     },
   },
   cases: {
-    mark: 'SOLUTIONS',
-    title: ['ONE TECHNOLOGY.', 'DIFFERENT PLACES.'],
+    mark: 'Solutions',
+    title: ['One technology.', 'Different places.'],
     hint: 'Choose a field',
     items: {
       restaurant: {
         label: 'Restaurant',
         headline: 'From table to menu — in one tap.',
-        caption: 'WOODEN PLAQUE — ON A RESTAURANT TABLE',
+        caption: 'Jiyda — on the restaurant table',
         screen: {
           title: 'Restaurant',
           sub: 'Digital menu',
@@ -104,7 +105,7 @@ export const en: Dict = {
       hotel: {
         label: 'Hotel',
         headline: 'Everything a guest needs, in one place.',
-        caption: 'ACRYLIC PLAQUE — IN A HOTEL ROOM',
+        caption: 'Oromee — in the hotel room',
         screen: {
           title: 'Hotel',
           sub: 'Room 214',
@@ -116,7 +117,7 @@ export const en: Dict = {
       doctor: {
         label: 'Doctor',
         headline: 'Key facts about the specialist — one tap away.',
-        caption: 'PLAQUE — ON THE CONSULTATION DESK',
+        caption: 'Sadaf clinic — on the front desk',
         screen: {
           title: 'Doctor profile',
           sub: 'Cardiologist',
@@ -128,7 +129,7 @@ export const en: Dict = {
       gym: {
         label: 'Gym',
         headline: 'Every machine becomes a personal guide.',
-        caption: 'NFC TAG — ON THE MACHINE',
+        caption: 'Space — by the machine',
         screen: {
           title: 'Machine 07',
           sub: 'Chest press',
@@ -140,7 +141,7 @@ export const en: Dict = {
       business: {
         label: 'Business',
         headline: 'The business card. Just smarter.',
-        caption: 'NFC BUSINESS CARD — AT A MEETING',
+        caption: 'Omnia — NFC business card',
         screen: {
           title: 'Fenix NFC',
           sub: 'Digital business card',
@@ -152,45 +153,34 @@ export const en: Dict = {
     },
   },
   how: {
-    mark: 'PROCESS',
-    title: 'HOW IT WORKS',
+    mark: 'Process',
+    title: 'How it works',
     steps: [
       { name: 'Choose the idea', line: 'What should your customer open?' },
       { name: 'We build it', line: 'A physical NFC product and the digital experience behind it.' },
       { name: 'Tap', line: 'Your customer opens everything instantly.' },
     ],
-    journey: ['IDEA', 'OBJECT', 'TAP', 'DIGITAL'],
+    journey: ['Idea', 'Object', 'Tap', 'Digital'],
   },
   work: {
-    mark: 'SELECTED WORK',
-    title: 'PROJECTS',
+    mark: 'Selected work',
+    title: 'Projects',
     meta: { type: 'Type', product: 'Product', year: 'Year' },
     items: {
-      menu: {
-        name: 'Restaurant menu system',
-        type: 'Digital menu',
-        product: 'Wooden plaque',
-        year: '2025',
-      },
-      card: {
-        name: 'Personal NFC card',
-        type: 'Digital profile',
-        product: 'NFC card',
-        year: '2026',
-      },
-      custom: {
-        name: 'Custom commission',
-        type: 'Product + page',
-        product: 'Acrylic / wood',
-        year: '2026',
-      },
+      caravan: { name: 'Caravan House', type: 'Restaurant plaque', product: 'Printed plaque + NFC', year: '2025' },
+      personal: { name: 'Shaxzod Tulayev', type: 'Personal digital card', product: 'NFC card', year: '2026' },
+      guest: { name: 'Homewithakash', type: 'Guest-house system', product: 'NFC + QR plaque', year: '2025' },
+      pizza: { name: 'Bellissimo Pizza', type: 'Chain menu system', product: 'Acrylic plaque', year: '2026' },
+      forel: { name: 'Restoran Forel', type: 'Table plaque', product: 'Acrylic, gold print', year: '2025' },
+      coffee: { name: 'N.Y Coffee', type: 'Café menu system', product: 'Acrylic plaque', year: '2026' },
     },
+    archive: { title: 'All work', hint: '20+ projects · 2025–2026' },
   },
   cta: {
-    mark: 'CONTACT',
-    title: ['HAVE', 'AN IDEA?'],
+    mark: 'Contact',
+    title: ['Have', 'an idea?'],
     line: 'Let’s make it one tap away.',
-    button: 'GET IN TOUCH',
+    button: 'Get in touch',
     tg: 'Telegram',
     email: 'Email',
     phoneLabel: 'Phone',
@@ -200,7 +190,7 @@ export const en: Dict = {
     colPages: 'Pages',
     colContact: 'Contact',
     colLang: 'Language',
-    place: 'TASHKENT — UZBEKISTAN',
+    place: 'Tashkent — Uzbekistan',
     rights: '© 2026 Fenix. All rights reserved.',
   },
 }

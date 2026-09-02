@@ -1,18 +1,20 @@
 .products {
-  padding-block: clamp(96px, 12vw, 170px) 0;
+  padding-block: clamp(88px, 11vw, 150px) 0;
 }
 
 .products__list {
-  margin-top: clamp(44px, 6vw, 80px);
+  margin-top: clamp(40px, 5vw, 70px);
 }
 
 .prow {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
-  align-items: end;
-  border-top: 1px solid var(--line);
-  padding-block: clamp(48px, 7vw, 96px);
+  align-items: center;
+  padding-block: clamp(40px, 5.5vw, 76px);
+}
+.prow + .prow {
+  border-top: 1px solid var(--line-soft);
 }
 
 /* editorial column rhythm — each product sits differently on the grid */
@@ -28,16 +30,17 @@
 .prow__mediawrap {
   position: relative;
 }
+/* the soft number slips behind the media panel */
 .prow__num {
   position: absolute;
-  top: -0.52em;
-  left: -0.05em;
-  z-index: 2;
+  top: -0.46em;
+  left: 0;
+  z-index: 0;
   font-size: clamp(4.2rem, 8.5vw, 8.8rem);
 }
 .prow--flip .prow__num {
   left: auto;
-  right: -0.05em;
+  right: 0;
 }
 
 .prow__media {
@@ -46,11 +49,14 @@
   place-items: center;
   overflow: hidden;
   position: relative;
+  z-index: 1;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
 }
-.field--white { background: var(--white); border: 1px solid var(--line-soft); }
-.field--ink { background: var(--ink); }
-.field--grey { background: var(--grey); }
-.field--paper { background: var(--paper); border: 1px solid var(--line); }
+.field--white { background: var(--white); }
+.field--ink { background: var(--grad-panel); }
+.field--grey { background: var(--tint); }
+.field--paper { background: var(--paper-2); }
 
 .pv {
   transition: transform 0.9s var(--ease);
@@ -60,15 +66,56 @@
   height: 100%;
   position: relative;
 }
+/* scroll parallax — the product drifts gently inside its field, and the soft
+   number counter-drifts behind it */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .pv {
+      animation: pvDrift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+    .prow__num {
+      animation: numDrift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes pvDrift {
+  from {
+    translate: 0 2.6%;
+  }
+  to {
+    translate: 0 -2.6%;
+  }
+}
+@keyframes numDrift {
+  from {
+    translate: 0 0.16em;
+  }
+  to {
+    translate: 0 -0.16em;
+  }
+}
 .prow__media:hover .pv {
   transform: translate(1.1%, -1.1%);
 }
+/* the multiplied photos must always sit on an explicit light ground */
+.field--white .pv {
+  background: var(--white);
+}
+.field--grey .pv {
+  background: var(--tint);
+}
+.field--paper .pv {
+  background: var(--paper-2);
+}
 
-/* wood */
-.pv--wood .pv__wood {
-  width: 74%;
-  transform: rotate(-4deg);
-  filter: drop-shadow(0 30px 36px rgba(10, 10, 10, 0.22));
+/* wood — the unbranded Fenix tab */
+.pv--wood .pv__photo {
+  width: 88%;
+  height: auto;
 }
 .pv__dim {
   position: absolute;
@@ -77,44 +124,43 @@
   width: clamp(90px, 10vw, 140px);
 }
 
-/* acrylic */
-.pv--acrylic .pv__acr {
+/* acrylic — photo mounted as a white print on the blue field */
+.pv--acrylic .pv__plate {
   width: 72%;
-  filter: drop-shadow(0 26px 36px rgba(0, 0, 0, 0.55));
+  background: var(--white);
+  padding: 4%;
+  border-radius: var(--r-sm);
+  box-shadow: 0 24px 50px rgba(10, 30, 90, 0.35);
+}
+.pv--acrylic .pv__plate img {
+  width: 100%;
+  height: auto;
 }
 
-/* cards */
-.pv--card .pv__cardback {
+/* card — photo fills the whole field, its studio ground becomes the field */
+.pv--card .pv__photo {
   position: absolute;
-  width: 52%;
-  transform: translate(16%, -22%) rotate(6deg);
-  filter: drop-shadow(0 18px 26px rgba(10, 10, 10, 0.18));
-}
-.pv--card .pv__cardfront {
-  position: relative;
-  width: 58%;
-  transform: translate(-8%, 10%) rotate(-4deg);
-  filter: drop-shadow(0 26px 32px rgba(10, 10, 10, 0.3));
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* custom trio */
+/* custom — three real commissions + the open slot for the next idea */
 .pv--custom {
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
   place-content: center;
-  gap: clamp(14px, 2.4vw, 30px);
+  align-items: center;
+  justify-items: center;
+  gap: clamp(6px, 1vw, 14px);
 }
-.pv--custom .pv__tag {
-  width: clamp(90px, 11vw, 150px);
-  filter: drop-shadow(0 16px 22px rgba(10, 10, 10, 0.2));
+.pv--custom .pv__mini {
+  width: clamp(134px, 15.5vw, 214px);
+  height: auto;
 }
 .pv--custom .pv__dash {
-  width: clamp(84px, 10vw, 140px);
-}
-.pv--custom .pv__miniacr {
-  grid-column: 1 / -1;
-  width: clamp(180px, 22vw, 300px);
-  filter: drop-shadow(0 16px 22px rgba(10, 10, 10, 0.16));
+  width: clamp(84px, 9.5vw, 134px);
 }
 
 /* copy column */
@@ -124,40 +170,49 @@
 }
 .prow__name {
   margin-top: 14px;
-  font-size: clamp(1.5rem, 2.4vw, 2.35rem);
-  line-height: 1.02;
+  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+  line-height: 1.12;
 }
 .prow__line {
-  margin-top: 14px;
+  margin-top: 12px;
   color: var(--mute);
   font-size: 0.98rem;
   max-width: 36ch;
 }
+/* spec rows — soft tinted chips, Bardak-style */
 .prow__specs {
-  margin-top: 26px;
-  border-top: 1px solid var(--line);
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .prow__specs > div {
   display: grid;
-  grid-template-columns: minmax(96px, 0.9fr) 1.4fr;
+  grid-template-columns: minmax(104px, 0.9fr) 1.4fr;
   gap: 12px;
   align-items: baseline;
-  padding-block: 11px;
-  border-bottom: 1px solid var(--line-soft);
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  background: rgba(91, 140, 255, 0.07);
   font-size: 0.92rem;
 }
 .prow__specs dd {
   margin: 0;
+  font-weight: 600;
 }
 .prow__uses {
-  margin-top: 18px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  background: var(--tint);
 }
 .prow__usesline {
   font-size: 0.9rem;
-  color: var(--ink);
+  font-weight: 600;
+  color: var(--blue-deep);
 }
 
 @media (max-width: 960px) {
@@ -177,29 +232,26 @@
   }
   .prow__num {
     font-size: clamp(3.6rem, 16vw, 5.4rem);
-    top: -0.5em;
+    top: -0.44em;
   }
   .prow--flip .prow__num {
     right: auto;
-    left: -0.05em;
+    left: 0;
   }
   .prow__media {
     aspect-ratio: 5 / 4;
   }
-  .pv--wood .pv__wood {
-    width: 82%;
+  .pv--wood .pv__photo {
+    width: 96%;
   }
-  .pv--acrylic .pv__acr {
-    width: 82%;
+  .pv--acrylic .pv__plate {
+    width: 84%;
   }
-  .pv--card .pv__cardfront {
-    width: 64%;
+  .pv--custom .pv__mini {
+    width: clamp(110px, 34vw, 170px);
   }
-  .pv--card .pv__cardback {
-    width: 58%;
-  }
-  .pv--custom .pv__miniacr {
-    width: min(60%, 260px);
+  .pv--custom .pv__dash {
+    width: clamp(76px, 24vw, 120px);
   }
 }
 
@@ -207,6 +259,5 @@
   .prow__specs > div {
     grid-template-columns: 1fr;
     gap: 4px;
-    padding-block: 10px;
   }
 }

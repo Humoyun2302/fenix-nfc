@@ -1,28 +1,40 @@
 /* ————————————————————————————————————————————
    FENIX NFC — design system
-   paper / ink / warm grey + one ember accent
+   Bardak-style: airy blue-white, glossy pills,
+   soft shadows, serif display over Inter UI
    ———————————————————————————————————————————— */
 
 :root {
-  --paper: #f3f1eb;
-  --paper-2: #edeae2;
-  --ink: #0a0a0a;
+  --paper: #fcfdff; /* page background */
+  --paper-2: #f0f4ff; /* tinted band */
+  --tint: #e8f0ff; /* inner tinted rows / avatar circles */
+  --ink: #1a1a2e;
   --white: #ffffff;
-  --grey: #d9d5cc;
-  --mute: #7b766b;
-  --ember: #ff4b00;
+  --grey: #e8f0ff;
+  --mute: #64748b;
+  --ember: #5b8cff; /* primary blue (legacy var name, used everywhere) */
+  --blue-deep: #155dfc;
+  --grad: linear-gradient(180deg, #79a1ff 0%, #4a7ae8 100%);
+  --grad-panel: linear-gradient(150deg, #6e97ff 0%, #3765f2 60%, #2b55e0 100%);
 
-  --line: rgba(10, 10, 10, 0.16);
-  --line-soft: rgba(10, 10, 10, 0.09);
-  --line-inv: rgba(243, 241, 235, 0.22);
-  --line-inv-soft: rgba(243, 241, 235, 0.12);
+  --line: rgba(91, 140, 255, 0.18);
+  --line-soft: rgba(91, 140, 255, 0.1);
+  --line-inv: rgba(255, 255, 255, 0.34);
+  --line-inv-soft: rgba(255, 255, 255, 0.18);
 
-  --font-d: 'Inter Tight Variable', 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
-    sans-serif;
+  --shadow-card: 0 12px 32px rgba(91, 140, 255, 0.12), 0 2px 8px rgba(26, 26, 46, 0.04);
+  --shadow-float: 0 30px 70px rgba(91, 140, 255, 0.2), 0 6px 18px rgba(26, 26, 46, 0.05);
+  --shadow-btn: 0 10px 24px rgba(74, 122, 232, 0.35);
+
+  --r-lg: 28px;
+  --r-md: 20px;
+  --r-sm: 14px;
+
+  --font-d: 'Playfair Display Variable', Georgia, 'Times New Roman', serif;
   --font-b: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 
-  --container: 1560px;
-  --pad: clamp(20px, 4.2vw, 72px);
+  --container: 1400px;
+  --pad: clamp(20px, 4.2vw, 64px);
   --gap: clamp(16px, 2vw, 32px);
   --nav-h: 76px;
 
@@ -83,17 +95,19 @@ figure {
 :focus-visible {
   outline: 2px solid var(--ember);
   outline-offset: 3px;
+  border-radius: 6px;
 }
 
-/* paper grain — nearly invisible tooth over everything */
+/* real product photography — white studio grounds dissolve into the page.
+   The blending container must always paint an explicit light background. */
+.ph {
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+/* the old paper grain is gone — this style is clean */
 .grain {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
-  background-size: 220px;
+  display: none;
 }
 
 /* layout */
@@ -105,29 +119,26 @@ figure {
 
 /* typography */
 .micro {
-  font-size: 11px;
-  font-weight: 640;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 .micro--mute {
   color: var(--mute);
 }
 .display {
   font-family: var(--font-d);
-  font-weight: 650;
-  text-transform: uppercase;
-  letter-spacing: -0.015em;
-  line-height: 0.95;
+  font-weight: 640;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
 }
-/* Cyrillic diacritics (Ё, Й) need slightly more leading */
 html[lang='ru'] .display {
-  line-height: 1.04;
+  line-height: 1.12;
 }
 
 .sec-title {
-  margin-top: clamp(20px, 2.6vw, 36px);
-  font-size: clamp(2rem, 5.6vw, 6.2rem);
+  margin-top: clamp(16px, 2.2vw, 28px);
+  font-size: clamp(1.9rem, 4.4vw, 4.4rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -137,38 +148,43 @@ html[lang='ru'] .display {
   white-space: nowrap;
 }
 .sec-title__line:nth-child(2) {
-  margin-left: clamp(0px, 6vw, 110px);
+  margin-left: 0;
 }
 
-/* oversized outlined numbers */
+/* oversized soft numbers */
 .num-ghost {
-  font-family: var(--font-d);
-  font-weight: 650;
+  font-family: var(--font-b);
+  font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(10, 10, 10, 0.26);
-}
-@supports not (-webkit-text-stroke: 1px black) {
-  .num-ghost {
-    color: rgba(10, 10, 10, 0.1);
-  }
+  letter-spacing: -0.03em;
+  color: rgba(91, 140, 255, 0.16);
+  -webkit-text-stroke: 0;
 }
 
-/* section marker: 02 —— LABEL */
+/* section marker: 02 —— label */
 .smark {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
 }
 .smark .micro:first-child {
-  color: var(--ember);
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding-inline: 8px;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--blue-deep);
+  font-weight: 700;
+}
+.smark .micro:last-child {
+  color: var(--mute);
 }
 .smark__line {
-  width: 56px;
+  width: 44px;
   height: 1px;
-  background: currentColor;
-  opacity: 0.35;
+  background: var(--line);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1s var(--ease) 0.15s;
@@ -177,25 +193,25 @@ html[lang='ru'] .display {
   transform: scaleX(1);
 }
 .smark--inv {
-  color: var(--paper);
-}
-.smark--inv .micro:last-child {
-  color: rgba(243, 241, 235, 0.6);
+  color: var(--ink);
 }
 
-/* buttons */
+/* buttons — glossy pills */
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  height: 54px;
-  padding: 0 26px;
-  font-size: 12px;
-  font-weight: 680;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
   white-space: nowrap;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.35s var(--ease),
+    translate 0.3s ease-out, filter 0.3s;
 }
 .btn__arrow {
   transition: transform 0.3s var(--ease);
@@ -205,25 +221,92 @@ html[lang='ru'] .display {
   transform: translateX(4px);
 }
 .btn--solid {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--grad);
+  color: var(--white);
+  box-shadow: var(--shadow-btn);
 }
 .btn--solid:hover {
-  background: var(--ember);
-  color: var(--ink);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 30px rgba(74, 122, 232, 0.45);
 }
 .btn--line {
+  background: var(--white);
   border: 1px solid var(--line);
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(91, 140, 255, 0.08);
 }
 .btn--line:hover {
-  border-color: var(--ink);
+  border-color: var(--ember);
+  color: var(--blue-deep);
 }
 .btn--paper {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--white);
+  color: var(--blue-deep);
+  box-shadow: 0 14px 32px rgba(10, 30, 80, 0.25);
 }
 .btn--paper:hover {
+  filter: brightness(1.03);
+  box-shadow: 0 18px 40px rgba(10, 30, 80, 0.32);
+}
+
+/* running signal band */
+.ticker {
+  overflow: hidden;
+  user-select: none;
+}
+.ticker--ember {
+  background: var(--grad-panel);
+  color: var(--white);
+}
+.ticker--line {
+  border-block: 1px solid var(--line-soft);
+  color: var(--ink);
+  background: var(--white);
+}
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: tickerX 26s linear infinite;
+}
+.ticker:hover .ticker__track {
+  animation-play-state: paused;
+}
+.ticker__seg {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
+  padding-left: clamp(16px, 2vw, 28px);
+  padding-block: 14px;
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.ticker--line .ticker__item {
+  padding-block: 15px;
+  color: var(--mute);
+}
+.ticker__sep {
+  flex: 0 0 auto;
+  opacity: 0.8;
+}
+.ticker__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   background: var(--ember);
+  flex: 0 0 auto;
+}
+@keyframes tickerX {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* scroll reveal */
@@ -237,6 +320,28 @@ html[lang='ru'] .display {
   transform: none;
 }
 
+/* editorial line reveal — text rises out of a clipped slot */
+.mline {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.mline__in {
+  display: block;
+  transform: translateY(118%) rotate(2.4deg);
+  transform-origin: 0 100%;
+  transition: transform 1.05s var(--ease);
+  will-change: transform;
+}
+.mline.in .mline__in {
+  transform: none;
+}
+.mline--loose {
+  padding: 0.18em 0.24em;
+  margin: -0.18em -0.24em;
+}
+
 /* skip link */
 .skip {
   position: fixed;
@@ -244,8 +349,9 @@ html[lang='ru'] .display {
   left: 16px;
   z-index: 3000;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--white);
   padding: 12px 18px;
+  border-radius: 999px;
   font-size: 13px;
   transition: top 0.2s;
 }
@@ -256,9 +362,6 @@ html[lang='ru'] .display {
 @media (max-width: 960px) {
   :root {
     --nav-h: 64px;
-  }
-  .sec-title__line:nth-child(2) {
-    margin-left: 0;
   }
 }
 
@@ -276,5 +379,11 @@ html[lang='ru'] .display {
   .rv {
     opacity: 1;
     transform: none;
+  }
+  .mline__in {
+    transform: none;
+  }
+  .ticker__track {
+    animation: none !important;
   }
 }

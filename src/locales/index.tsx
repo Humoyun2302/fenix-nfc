@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { flushSync } from 'react-dom'
 import type { ReactNode } from 'react'
 import { uz } from './uz'
 import { ru } from './ru'
@@ -31,11 +32,20 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(readStoredLang)
 
   const setLang = (l: Lang) => {
-    setLangState(l)
-    try {
-      localStorage.setItem(STORAGE_KEY, l)
-    } catch {
-      /* storage unavailable */
+    const apply = () => {
+      setLangState(l)
+      try {
+        localStorage.setItem(STORAGE_KEY, l)
+      } catch {
+        /* storage unavailable */
+      }
+    }
+    // Crossfade the whole page between languages where the browser can.
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => void }
+    if (doc.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      doc.startViewTransition(() => flushSync(apply))
+    } else {
+      apply()
     }
   }
 

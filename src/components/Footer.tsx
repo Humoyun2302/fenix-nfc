@@ -57,6 +57,13 @@ export function Footer() {
         </div>
       </div>
 
+      {/* closing wordmark */}
+      <div className="container" aria-hidden="true">
+        <div className="footer__mega display">
+          FENIX<span className="footer__mega-dot">.</span>
+        </div>
+      </div>
+
       <div className="container footer__bottom">
         <span className="micro footer__rights">{t.footer.rights}</span>
         <span className="micro footer__stamp">FENIX / NFC / 2026</span>

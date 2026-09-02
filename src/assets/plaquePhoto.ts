@@ -1,15 +1,14 @@
 /**
- * Real product photography slot.
+ * Photo slot for the VECTOR wooden plaque (WoodPlaque component).
  *
- * When the studio photograph of the wooden NFC plaque is ready:
- *   1) Drop the file at  src/assets/wood-plaque.jpg  (or .png / .webp)
- *   2) Uncomment the import below and set `plaquePhoto = photo`
+ * Since the real product photography arrived (src/assets/works/ + data/works.ts),
+ * the hero, products, scenes and projects all use real photos directly.
+ * WoodPlaque's vector render is still used in the two ink sections
+ * (Statement flow, CTA corner), where the light studio photos cannot blend.
  *
- * Every WoodPlaque on the site (hero, products, projects, scenes) will
- * automatically render the photograph instead of the vector render,
- * clipped to the same rounded-corner geometry.
+ * Setting a photo here would swap it into those vector plaques too:
+ *   import photo from './wood-plaque.jpg'
+ *   export const plaquePhoto: string | null = photo
  */
 
-// import photo from './wood-plaque.jpg'
-
-export const plaquePhoto: string | null = null // set to `photo` once imported
+export const plaquePhoto: string | null = null

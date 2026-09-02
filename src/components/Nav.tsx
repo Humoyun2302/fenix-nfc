@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '../locales'
+import { useMagnet } from '../hooks/useMagnet'
 import { Logo } from './marks'
 import { LangSwitcher } from './LangSwitcher'
 import './Nav.css'
@@ -8,13 +9,73 @@ import './Nav.css'
 export function Nav() {
   const { t } = useLang()
   const [scrolled, setScrolled] = useState(false)
+  const [dark, setDark] = useState(false)
   const [open, setOpen] = useState(false)
+  const progressRef = useRef<HTMLSpanElement>(null)
+  const magnetRef = useMagnet<HTMLAnchorElement>(0.14, 5)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Hairline reading-progress indicator under the bar.
+  useEffect(() => {
+    const el = progressRef.current
+    if (!el) return
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      el.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`
+    }
+    const queue = () => {
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', queue, { passive: true })
+    window.addEventListener('resize', queue)
+    return () => {
+      window.removeEventListener('scroll', queue)
+      window.removeEventListener('resize', queue)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
+
+  // The bar inverts while it floats over an ink-coloured section.
+  useEffect(() => {
+    const zones = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-dark]'))
+    if (zones.length === 0) return
+    let raf = 0
+    const themeMeta = document.querySelector('meta[name="theme-color"]')
+    const check = () => {
+      raf = 0
+      const bar = document.querySelector('.nav__bar')
+      const y = (bar ? bar.getBoundingClientRect().height : 76) * 0.55
+      const isDark = zones.some((z) => {
+        const r = z.getBoundingClientRect()
+        return r.top <= y && r.bottom >= y
+      })
+      setDark(isDark)
+      // keep the mobile browser chrome in step with the surface under the bar
+      themeMeta?.setAttribute('content', isDark ? '#0A0A0A' : '#FCFDFF')
+    }
+    const queue = () => {
+      if (!raf) raf = requestAnimationFrame(check)
+    }
+    check()
+    window.addEventListener('scroll', queue, { passive: true })
+    window.addEventListener('resize', queue)
+    const ro = new ResizeObserver(queue)
+    ro.observe(document.body)
+    return () => {
+      window.removeEventListener('scroll', queue)
+      window.removeEventListener('resize', queue)
+      ro.disconnect()
+      cancelAnimationFrame(raf)
+    }
   }, [])
 
   useEffect(() => {
@@ -32,7 +93,7 @@ export function Nav() {
   ]
 
   return (
-    <header className={`nav${scrolled ? ' nav--scrolled' : ''}${open ? ' nav--open' : ''}`}>
+    <header className={`nav${scrolled ? ' nav--scrolled' : ''}${dark ? ' nav--dark' : ''}${open ? ' nav--open' : ''}`}>
       <div className="nav__bar">
         <a className="brand" href="#top" aria-label="Fenix NFC" onClick={() => setOpen(false)}>
           <Logo size={20} />
@@ -50,7 +111,7 @@ export function Nav() {
 
         <div className="nav__right">
           <LangSwitcher className="nav__langs" />
-          <a className="btn btn--line nav__cta" href="#contact">
+          <a className="btn btn--line nav__cta" href="#contact" ref={magnetRef}>
             {t.nav.contact}
             <ArrowRight className="btn__arrow" size={14} strokeWidth={2} />
           </a>
@@ -65,6 +126,7 @@ export function Nav() {
             <span />
           </button>
         </div>
+        <span className="nav__progress" ref={progressRef} aria-hidden="true" />
       </div>
 
       {/* full-screen mobile menu */}

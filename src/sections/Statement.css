@@ -1,12 +1,12 @@
 .statement {
-  background: var(--ink);
-  color: var(--paper);
-  padding-block: clamp(96px, 13vw, 190px);
+  background: var(--paper-2);
+  color: var(--ink);
+  padding-block: clamp(88px, 11vw, 160px);
 }
 
 .statement__title {
-  margin-top: clamp(36px, 5vw, 64px);
-  font-size: clamp(1.62rem, 5.3vw, 6.1rem);
+  margin-top: clamp(28px, 4vw, 52px);
+  font-size: clamp(1.7rem, 4.6vw, 4.7rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -16,13 +16,36 @@
   white-space: nowrap;
 }
 
-/* OBJECT → TAP → PHONE */
+/* the drawn ring settles around the final word after its line has risen */
+.st-circle {
+  position: relative;
+  display: inline-block;
+}
+.st-circle__svg {
+  position: absolute;
+  inset: -13% -6%;
+  width: 112%;
+  height: 126%;
+  overflow: visible;
+  pointer-events: none;
+}
+.st-circle__svg path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.9;
+}
+.mline.in .st-circle__svg path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.15s var(--ease-2) 1s;
+}
+
+/* OBJECT → TAP → PHONE — nodes stand on a common baseline, labels aligned */
 .statement__flow {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: clamp(14px, 4vw, 48px);
-  margin-top: clamp(54px, 8vw, 110px);
-  color: var(--paper);
+  margin-top: clamp(48px, 7vw, 96px);
+  color: var(--ink);
 }
 .statement__node {
   display: flex;
@@ -31,10 +54,22 @@
   gap: 16px;
 }
 .statement__obj {
-  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 18px 30px rgba(91, 140, 255, 0.3));
+  animation: floatY 5.5s ease-in-out infinite alternate;
+}
+.mini-phone {
+  animation: floatY 6.5s ease-in-out 1.2s infinite alternate;
+}
+@keyframes floatY {
+  from {
+    translate: 0 3px;
+  }
+  to {
+    translate: 0 -5px;
+  }
 }
 .statement__nlabel {
-  color: rgba(243, 241, 235, 0.5);
+  color: var(--mute);
 }
 
 .statement__pulse {
@@ -43,6 +78,9 @@
   height: 66px;
   display: grid;
   place-items: center;
+  background: var(--white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-card);
 }
 .cssring {
   position: absolute;
@@ -69,9 +107,9 @@
 .flow-arrow {
   width: clamp(44px, 6vw, 72px);
   flex: 0 0 auto;
-  stroke: rgba(243, 241, 235, 0.55);
+  stroke: rgba(91, 140, 255, 0.65);
   stroke-width: 1.5;
-  margin-bottom: 30px;
+  margin-bottom: 74px;
 }
 .flow-arrow__line {
   stroke-dasharray: 4 6;
@@ -85,15 +123,15 @@
 
 .mini-phone {
   width: 62px;
-  color: rgba(243, 241, 235, 0.85);
+  color: var(--ink);
 }
 
 .statement__para {
-  margin-top: clamp(52px, 8vw, 100px);
+  margin-top: clamp(48px, 7vw, 88px);
   margin-left: min(38%, 460px);
-  max-width: 44ch;
+  max-width: 46ch;
   font-size: clamp(1rem, 1.25vw, 1.15rem);
-  color: rgba(243, 241, 235, 0.72);
+  color: var(--mute);
 }
 
 @media (max-width: 760px) {
@@ -116,7 +154,7 @@
     height: 52px;
   }
   .flow-arrow {
-    margin-bottom: 26px;
+    margin-bottom: 62px;
   }
   .statement__para {
     margin-left: 0;

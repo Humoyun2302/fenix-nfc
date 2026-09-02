@@ -1,6 +1,7 @@
 import { LangProvider, useLang } from './locales'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
+import { Ticker } from './components/Ticker'
 import { Hero } from './sections/Hero'
 import { Statement } from './sections/Statement'
 import { Products } from './sections/Products'
@@ -19,6 +20,7 @@ function Site() {
       <Nav />
       <main id="main">
         <Hero />
+        <Ticker items={t.ticker} variant="ember" />
         <Statement />
         <Products />
         <UseCases />
