@@ -49,17 +49,15 @@ function Visual({ id, alt }: { id: ProductId; alt: string }): ReactNode {
     case 'acrylic':
       return (
         <div className="pv pv--acrylic">
-          <div className="pv__plate">
-            <img
-              className="ph"
-              src={PRODUCT_PHOTOS.acrylic.img}
-              width={PRODUCT_PHOTOS.acrylic.w}
-              height={PRODUCT_PHOTOS.acrylic.h}
-              alt={`${alt} — ${PRODUCT_PHOTOS.acrylic.name}`}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+          <img
+            className="ph pv__photo"
+            src={PRODUCT_PHOTOS.acrylic.img}
+            width={PRODUCT_PHOTOS.acrylic.w}
+            height={PRODUCT_PHOTOS.acrylic.h}
+            alt={`${alt} — ${PRODUCT_PHOTOS.acrylic.name}`}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       )
     case 'card':

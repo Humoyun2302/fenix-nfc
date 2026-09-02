@@ -38,7 +38,7 @@ src/
   components/   Phone (realistic smartphone demo), Scene (photo + hairline
                 environment per industry), Nav, Footer, marks, flow, Reveal,
                 WoodPlaque/AcrylicPlaque/… (vector renders, still used in
-                the Statement and CTA ink sections)
+                decorative CTA artwork)
   styles/       global.css (design tokens, grain, type system, buttons)
   assets/works/ 27 optimized WebP product photographs (real client work)
 ```
@@ -49,11 +49,10 @@ Real photos live in `src/assets/works/` and are indexed in
 `src/data/works.ts` (which piece appears in the hero, each product row,
 each use-case scene, the featured project grid and the archive).
 
-Presentation trick: photos are shot on white studio grounds, so they are
-rendered with `mix-blend-mode: multiply` (class `.ph`) over explicit
-light backgrounds — the ground dissolves into the page. Free-floating
-photos (hero, scenes) additionally get a paper-colored vignette overlay
-(`.hero__fade` / `.scene__fade`) so their edges feather into the paper.
+Most product photos are transparent WebP cutouts. The shared `.ph` class
+keeps their rendering consistent, while each section adds a suitable
+drop shadow and sizing for its background. The gym scene intentionally
+keeps its original white studio background.
 Any new photo: convert to WebP (~1200px wide, quality 82), drop it in
 `assets/works/`, and reference it from `works.ts`.
 

@@ -114,19 +114,12 @@
 .hero__photo {
   position: absolute;
   left: 50%;
-  top: 54%;
+  top: 51%;
   transform: translate(-50%, -50%);
-  width: min(72%, 560px);
+  width: min(82%, 640px);
   height: auto;
-}
-/* white vignette dissolves the photograph's studio edges into the card */
-.hero__fade {
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  background:
-    linear-gradient(to right, var(--white), rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, 0) 82%, var(--white)),
-    linear-gradient(to bottom, var(--white), rgba(255, 255, 255, 0) 16%, rgba(255, 255, 255, 0) 80%, var(--white));
+  /* cutout product floats on the platform with its own soft shadow */
+  filter: drop-shadow(0 30px 34px rgba(26, 26, 46, 0.2));
 }
 
 /* technical callouts */

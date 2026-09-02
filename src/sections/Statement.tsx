@@ -2,7 +2,7 @@ import { useLang } from '../locales'
 import { Reveal } from '../components/Reveal'
 import { MaskLine } from '../components/MaskLine'
 import { SectionMark } from '../components/SectionMark'
-import { WoodPlaque } from '../components/WoodPlaque'
+import { WOOD_TAB } from '../data/works'
 import { NfcSymbol } from '../components/marks'
 import { FlowArrow, MiniPhone } from '../components/flow'
 import './Statement.css'
@@ -51,7 +51,15 @@ export function Statement() {
         <div className="statement__flow">
           <Reveal className="statement__node">
             <div className="statement__obj">
-              <WoodPlaque width={170} />
+              <img
+                className="ph"
+                src={WOOD_TAB.img}
+                width={WOOD_TAB.w}
+                height={WOOD_TAB.h}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <span className="micro statement__nlabel">{t.statement.object}</span>
           </Reveal>

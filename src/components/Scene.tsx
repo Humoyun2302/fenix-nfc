@@ -7,7 +7,7 @@ const FILL = 'rgba(91,140,255,0.07)'
 
 /**
  * Hairline props drawn beside the photographed product. The surface line is
- * split so it never crosses the multiplied photo. viewBox 0 0 560 420.
+ * split so it never crosses the transparent cutout. viewBox 0 0 560 420.
  */
 function Props({ id }: { id: CaseId }) {
   const common = {
@@ -101,7 +101,6 @@ export function Scene({ id, tapLabel }: { id: CaseId; tapLabel: string }) {
           loading="lazy"
           decoding="async"
         />
-        <i className="scene__fade" aria-hidden="true" />
       </div>
       <Props id={id} />
       <span className="scene__pulse" aria-hidden="true">

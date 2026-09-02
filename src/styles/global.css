@@ -98,11 +98,9 @@ figure {
   border-radius: 6px;
 }
 
-/* real product photography — white studio grounds dissolve into the page.
-   The blending container must always paint an explicit light background. */
+/* real product photography — true alpha cutouts, float on any ground */
 .ph {
   display: block;
-  mix-blend-mode: multiply;
 }
 
 /* the old paper grain is gone — this style is clean */

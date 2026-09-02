@@ -18,15 +18,11 @@
 .scene__photo {
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 20px 24px rgba(26, 26, 46, 0.16));
 }
-/* white vignette dissolves the photograph's studio edges into the card */
-.scene__fade {
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  background:
-    linear-gradient(to right, var(--white), rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0) 85%, var(--white)),
-    linear-gradient(to bottom, var(--white), rgba(255, 255, 255, 0) 13%, rgba(255, 255, 255, 0) 84%, var(--white));
+/* the gym tab is an opaque white-studio shot — no cutout shadow */
+.scene--gym .scene__photo {
+  filter: none;
 }
 /* the framing varies per photo — nudge each product */
 .scene--restaurant .scene__photowrap {

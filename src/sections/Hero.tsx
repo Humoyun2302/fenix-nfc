@@ -89,7 +89,6 @@ export function Hero() {
                   fetchPriority="high"
                   decoding="async"
                 />
-                <i className="hero__fade" aria-hidden="true" />
               </div>
               <div className="callout callout--nfc">
                 <span className="micro">{t.hero.callouts.nfc}</span>

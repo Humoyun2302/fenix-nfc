@@ -65,15 +65,13 @@ export interface FeaturedWork extends WorkImage {
   cls: string
 }
 
-/** Selected work — editorial grid, varied scales. Square photos shown in the
- *  wide cells keep their studio ground (`pj--contain`) instead of being
- *  crop-zoomed past their own edges. */
+/** Selected work — editorial grid with varied scales and transparent cutouts. */
 export const FEATURED: FeaturedWork[] = [
   { key: 'caravan', num: '01', cls: 'pjf--a', img: caravan, w: 1200, h: 1200, name: 'Caravan House' },
   { key: 'personal', num: '02', cls: 'pjf--b', img: shaxzod, w: 1200, h: 1200, name: 'Shaxzod Tulayev' },
   { key: 'guest', num: '03', cls: 'pjf--c', img: homewithakashDark, w: 1200, h: 1200, name: 'Homewithakash' },
-  { key: 'pizza', num: '04', cls: 'pjf--d pj--contain', img: bellissimo, w: 1200, h: 1200, name: 'Bellissimo Pizza' },
-  { key: 'forel', num: '05', cls: 'pjf--e pj--contain', img: forel, w: 1200, h: 1200, name: 'Restoran Forel' },
+  { key: 'pizza', num: '04', cls: 'pjf--d', img: bellissimo, w: 1200, h: 1200, name: 'Bellissimo Pizza' },
+  { key: 'forel', num: '05', cls: 'pjf--e', img: forel, w: 1200, h: 1200, name: 'Restoran Forel' },
   { key: 'coffee', num: '06', cls: 'pjf--f', img: nyCoffee, w: 1200, h: 1200, name: 'N.Y Coffee' },
 ]
 
